@@ -17,9 +17,9 @@ limitations under the License.
 
 using namespace tensorflow;
 
-class ZeroOutOp : public OpKernel {
+class SpectrogramOp : public OpKernel {
  public:
-  explicit ZeroOutOp(OpKernelConstruction* context) : OpKernel(context) {}
+  explicit SpectrogramOp(OpKernelConstruction* context) : OpKernel(context) {}
 
   void Compute(OpKernelContext* context) override {
     // Grab the input tensor
@@ -43,4 +43,4 @@ class ZeroOutOp : public OpKernel {
   }
 };
 
-REGISTER_KERNEL_BUILDER(Name("ZeroOut").Device(DEVICE_CPU), ZeroOutOp);
+REGISTER_KERNEL_BUILDER(Name("Spectrogram").Device(DEVICE_CPU), SpectrogramOp);

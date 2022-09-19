@@ -27,7 +27,7 @@ __version__ = '0.0.1'
 REQUIRED_PACKAGES = [
     'tensorflow >= 2.1.0',
 ]
-project_name = 'tensorflow-custom-ops'
+project_name = 'sxaudio-tf'
 
 
 from setuptools.command.install import install
@@ -49,9 +49,10 @@ class BinaryDistribution(Distribution):
 setup(
     name=project_name,
     version=__version__,
-    description=('tensorflow-custom-ops is an examples for custom ops for TensorFlow'),
-    author='Google Inc.',
-    author_email='opensource@google.com',
+    description=('SxAudio spectrum ops'),
+    author='StreamLogic, LLC',
+    author_email='support@streamlogic.io',
+    setup_requires=['wheel'],
     # Contained modules and scripts.
     packages=find_packages(),
     install_requires=REQUIRED_PACKAGES,
@@ -64,17 +65,13 @@ setup(
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
-        'Intended Audience :: Education',
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: Apache Software License',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Topic :: Scientific/Engineering :: Mathematics',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Software Development :: Libraries',
     ],
     license='Apache 2.0',
-    keywords='tensorflow custom op machine learning',
+    keywords='tensorflow audio machine learning',
 )

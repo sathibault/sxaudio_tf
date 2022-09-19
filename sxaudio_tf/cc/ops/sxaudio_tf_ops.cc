@@ -18,7 +18,7 @@ limitations under the License.
 
 using namespace tensorflow;
 
-REGISTER_OP("ZeroOut")
+REGISTER_OP("Spectrogram")
     .Input("to_zero: int32")
     .Output("zeroed: int32")
     .SetShapeFn([](::tensorflow::shape_inference::InferenceContext* c) {

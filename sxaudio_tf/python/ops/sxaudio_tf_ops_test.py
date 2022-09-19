@@ -12,30 +12,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ============================================================================
-"""Tests for time_two ops."""
+"""Tests for sxaudio_tf ops."""
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
 import numpy as np
 
-from tensorflow.python.framework import ops
 from tensorflow.python.platform import test
-from tensorflow.python.framework import test_util
 try:
-  from tensorflow_time_two.python.ops import time_two_ops
+  from tensorflow_sxaudio_tf.python.ops.sxaudio_tf_ops import sxaudio_tf
 except ImportError:
-  import time_two_ops
+  from sxaudio_tf_ops import sxaudio_tf
 
 
-class TimeTwoTest(test.TestCase):
+class ZeroOutTest(test.TestCase):
 
-  @test_util.run_gpu_only
-  def testTimeTwo(self):
+  def testZeroOut(self):
     with self.test_session():
-      with ops.device("/gpu:0"):
-        self.assertAllClose(
-            time_two_ops.time_two([[1, 2], [3, 4]]), np.array([[2, 4], [6, 8]]))
+      self.assertAllClose(
+          sxaudio_tf([[1, 2], [3, 4]]), np.array([[1, 0], [0, 0]]))
 
 
 if __name__ == '__main__':

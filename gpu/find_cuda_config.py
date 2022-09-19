@@ -344,7 +344,7 @@ def _find_cudnn_config(base_paths, required_version):
         for name in ("CUDNN_MAJOR", "CUDNN_MINOR", "CUDNN_PATCHLEVEL"))
     return ".".join(version)
 
-  header_path, header_version = _find_header(base_paths, "cudnn.h",
+  header_path, header_version = _find_header(base_paths, "cudnn_version.h",
                                              required_version,
                                              get_header_version)
   cudnn_version = header_version.split(".")[0]

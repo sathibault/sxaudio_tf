@@ -14,7 +14,9 @@
 # limitations under the License.
 # ==============================================================================
 PLATFORM="$(uname -s | tr 'A-Z' 'a-z')"
-PIP="pip3"
+#PIP="pip3"
+PIP="c:/tools/Python37/Scripts/pip"
+PYTHON="c:/tools/Python37/python"
 
 function write_to_bazelrc() {
   echo "$1" >> .bazelrc
@@ -95,14 +97,14 @@ if [[ "$TF_NEED_CUDA" == "0" ]]; then
     # Uninstall GPU version if it is installed.
     if [[ $(${PIP} show tensorflow) == *tensorflow* ]]; then
       echo 'Already have gpu version of tensorflow installed. Uninstalling......\n'
-      ${PIP} uninstall tensorflow
+      #### ${PIP} uninstall tensorflow
     elif [[ $(${PIP} show tf-nightly) == *tf-nightly* ]]; then
       echo 'Already have gpu version of tensorflow installed. Uninstalling......\n'
-      ${PIP} uninstall tf-nightly
+      #### ${PIP} uninstall tf-nightly
     fi
     # Install CPU version
     echo 'Installing tensorflow-cpu......\n'
-    ${PIP} install tensorflow-cpu
+    #### ${PIP} install tensorflow-cpu
   fi
 
 else
@@ -114,20 +116,20 @@ else
     # Uninstall CPU version if it is installed.
     if [[ $(${PIP} show tensorflow-cpu) == *tensorflow-cpu* ]]; then
       echo 'Already have tensorflow non-gpu installed. Uninstalling......\n'
-      ${PIP} uninstall tensorflow
+      #### ${PIP} uninstall tensorflow
     elif [[ $(${PIP} show tf-nightly-cpu) == *tf-nightly-cpu* ]]; then
       echo 'Already have tensorflow non-gpu installed. Uninstalling......\n'
-      ${PIP} uninstall tf-nightly
+      #### ${PIP} uninstall tf-nightly
     fi
     # Install GPU version
     echo 'Installing tensorflow .....\n'
-    ${PIP} install tensorflow
+    #### ${PIP} install tensorflow
   fi
 fi
 
 
-TF_CFLAGS=( $(python3 -c 'import tensorflow as tf; print(" ".join(tf.sysconfig.get_compile_flags()))') )
-TF_LFLAGS="$(python3 -c 'import tensorflow as tf; print(" ".join(tf.sysconfig.get_link_flags()))')"
+TF_CFLAGS=( $(${PYTHON} -c 'import tensorflow as tf; print(" ".join(tf.sysconfig.get_compile_flags()))') )
+TF_LFLAGS="$(${PYTHON} -c 'import tensorflow as tf; print(" ".join(tf.sysconfig.get_link_flags()))')"
 
 write_to_bazelrc "build:cuda --define=using_cuda=true --define=using_cuda_nvcc=true"
 if [[ "$PIP_MANYLINUX2010" == "0" ]]; then

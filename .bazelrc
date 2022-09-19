@@ -1,0 +1,16 @@
+build:cuda --define=using_cuda=true --define=using_cuda_nvcc=true
+build:cuda --crosstool_top=@local_config_cuda//crosstool:toolchain
+build --spawn_strategy=standalone
+build -c opt
+build --copt=/experimental:preprocessor
+build --host_copt=/experimental:preprocessor
+build --action_env TF_HEADER_DIR="C:/tools/Python37/lib/site-packages/tensorflow/include"
+build --action_env TF_SHARED_LIBRARY_DIR="C:/tools/Python37/lib/site-packages/tensorflow/python"
+build --action_env TF_SHARED_LIBRARY_NAME="_pywrap_tensorflow_internal.lib"
+build --action_env TF_NEED_CUDA="1"
+build --action_env TF_CUDA_VERSION="10.2"
+build --action_env TF_CUDNN_VERSION="8"
+build --action_env CUDNN_INSTALL_PATH="C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.2"
+build --action_env CUDA_TOOLKIT_PATH="C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.2"
+build --config=cuda
+test --config=cuda

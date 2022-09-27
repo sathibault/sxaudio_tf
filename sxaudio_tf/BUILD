@@ -10,6 +10,7 @@ config_setting(
 cc_binary(
     name = 'python/ops/_sxaudio_tf_ops.so',
     srcs = [
+        "cc/kernels/sxmath.cpp",
         "cc/kernels/sxaudio_tf_kernels.cc",
         "cc/ops/sxaudio_tf_ops.cc",
     ],
